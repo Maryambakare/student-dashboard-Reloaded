@@ -37,6 +37,11 @@ npm run build
 - [`src/app/globals.css`](./src/app/globals.css) contains the global styling
   and reduced-motion preference.
 
+An `Assignment` has an `id` (a unique React key), `title`, `course`, ISO-format
+`dueDate`, display-ready `dueLabel`, and short `description`. The assignment
+list in `src/data/assignments.ts` is the source for all three cards. Completion
+IDs are kept in page state and are not written back to that sample data.
+
 ## Try the completion buttons
 
 Select **Mark as Completed** on an assignment. Its button changes to
