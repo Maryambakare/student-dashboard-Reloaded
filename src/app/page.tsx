@@ -1,9 +1,31 @@
+import SummaryCard from "@/components/summary-card";
 import StudentProfile from "@/components/student-profile";
 
 const navigation = [
   { label: "Overview", href: "#overview", active: true },
   { label: "My courses", href: "#courses", active: false },
   { label: "Assignments", href: "#assignments", active: false },
+];
+
+const summary = [
+  {
+    label: "Courses in progress",
+    value: "03",
+    description: "Active this semester",
+    tone: "violet" as const,
+  },
+  {
+    label: "Assignments to do",
+    value: "03",
+    description: "A little progress goes a long way",
+    tone: "amber" as const,
+  },
+  {
+    label: "Weekly study goal",
+    value: "8 / 12h",
+    description: "Example weekly goal",
+    tone: "green" as const,
+  },
 ];
 
 export default function Home() {
@@ -72,16 +94,14 @@ export default function Home() {
 
           <StudentProfile />
 
-          <div className="rounded-3xl border border-[#e9eaf1] bg-white p-6 shadow-[0_8px_32px_-24px_rgba(33,34,65,0.2)] sm:p-8">
-            <p className="text-sm font-semibold text-[#5152a5]">A fresh start</p>
-            <h2 className="mt-2 text-xl font-bold tracking-tight">
-              Make this your best semester yet.
-            </h2>
-            <p className="mt-2 max-w-xl text-sm leading-6 text-[#77798e]">
-              A little progress each day adds up to big results. Take a look at
-              what you&apos;re learning and what&apos;s coming up.
-            </p>
-          </div>
+          <section aria-label="Semester summary" className="mb-9">
+            <h2 className="sr-only">Semester summary</h2>
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {summary.map((card) => (
+                <SummaryCard key={card.label} {...card} />
+              ))}
+            </div>
+          </section>
         </div>
       </main>
     </div>
