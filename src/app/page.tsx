@@ -1,6 +1,8 @@
+import AssignmentCard from "@/components/assignment-card";
 import CourseCard from "@/components/course-card";
 import SummaryCard from "@/components/summary-card";
 import StudentProfile from "@/components/student-profile";
+import { initialAssignments } from "@/data/assignments";
 import { courses } from "@/data/courses";
 
 const navigation = [
@@ -120,6 +122,25 @@ export default function Home() {
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {courses.map((course) => (
                 <CourseCard course={course} key={course.id} />
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="assignments-heading" id="assignments">
+            <div className="mb-5">
+              <p className="text-sm font-semibold text-[#5152a5]">
+                YOUR SEMESTER
+              </p>
+              <h2
+                className="mt-1 text-xl font-bold tracking-tight"
+                id="assignments-heading"
+              >
+                Your assignments
+              </h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {initialAssignments.map((assignment) => (
+                <AssignmentCard assignment={assignment} key={assignment.id} />
               ))}
             </div>
           </section>

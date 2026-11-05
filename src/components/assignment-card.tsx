@@ -2,13 +2,13 @@ import type { Assignment } from "@/data/assignments";
 
 interface AssignmentCardProps {
   assignment: Assignment;
-  completed: boolean;
-  onToggleCompleted: (assignmentId: string) => void;
+  completed?: boolean;
+  onToggleCompleted?: (assignmentId: string) => void;
 }
 
 export default function AssignmentCard({
   assignment,
-  completed,
+  completed = false,
   onToggleCompleted,
 }: AssignmentCardProps) {
   return (
@@ -45,18 +45,20 @@ export default function AssignmentCard({
           )}
         </time>
       </p>
-      <button
-        aria-pressed={completed}
-        className={`mt-4 min-h-11 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors ${
-          completed
-            ? "bg-[#e9f5ee] text-[#387555] hover:bg-[#def0e5]"
-            : "bg-[#5152a5] text-white hover:bg-[#41428f]"
-        }`}
-        onClick={() => onToggleCompleted(assignment.id)}
-        type="button"
-      >
-        {completed ? "Mark as Incomplete" : "Mark as Completed"}
-      </button>
+      {onToggleCompleted && (
+        <button
+          aria-pressed={completed}
+          className={`mt-4 min-h-11 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors ${
+            completed
+              ? "bg-[#e9f5ee] text-[#387555] hover:bg-[#def0e5]"
+              : "bg-[#5152a5] text-white hover:bg-[#41428f]"
+          }`}
+          onClick={() => onToggleCompleted(assignment.id)}
+          type="button"
+        >
+          {completed ? "Mark as Incomplete" : "Mark as Completed"}
+        </button>
+      )}
       {completed && (
         <p className="sr-only" role="status">
           {assignment.title} marked as completed.
