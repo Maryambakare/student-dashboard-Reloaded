@@ -32,6 +32,7 @@ export default function Home() {
       value: String(incompleteAssignments).padStart(2, "0"),
       description: "A little progress goes a long way",
       tone: "amber" as const,
+      announceChanges: true,
     },
     {
       label: "Weekly study goal",
