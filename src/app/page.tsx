@@ -1,5 +1,7 @@
+import CourseCard from "@/components/course-card";
 import SummaryCard from "@/components/summary-card";
 import StudentProfile from "@/components/student-profile";
+import { courses } from "@/data/courses";
 
 const navigation = [
   { label: "Overview", href: "#overview", active: true },
@@ -99,6 +101,25 @@ export default function Home() {
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {summary.map((card) => (
                 <SummaryCard key={card.label} {...card} />
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="courses-heading" className="mb-10" id="courses">
+            <div className="mb-5">
+              <p className="text-sm font-semibold text-[#5152a5]">
+                KEEP LEARNING
+              </p>
+              <h2
+                className="mt-1 text-xl font-bold tracking-tight"
+                id="courses-heading"
+              >
+                Your courses
+              </h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {courses.map((course) => (
+                <CourseCard course={course} key={course.id} />
               ))}
             </div>
           </section>
