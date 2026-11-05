@@ -1,3 +1,5 @@
+import StudentProfile from "@/components/student-profile";
+
 const navigation = [
   { label: "Overview", href: "#overview", active: true },
   { label: "My courses", href: "#courses", active: false },
@@ -67,6 +69,8 @@ export default function Home() {
               Your classes, assignments, and progress all in one place.
             </p>
           </header>
+
+          <StudentProfile />
 
           <div className="rounded-3xl border border-[#e9eaf1] bg-white p-6 shadow-[0_8px_32px_-24px_rgba(33,34,65,0.2)] sm:p-8">
             <p className="text-sm font-semibold text-[#5152a5]">A fresh start</p>
