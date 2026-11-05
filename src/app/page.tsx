@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import AssignmentCard from "@/components/assignment-card";
 import CourseCard from "@/components/course-card";
 import SummaryCard from "@/components/summary-card";
@@ -11,28 +14,41 @@ const navigation = [
   { label: "Assignments", href: "#assignments", active: false },
 ];
 
-const summary = [
-  {
-    label: "Courses in progress",
-    value: "03",
-    description: "Active this semester",
-    tone: "violet" as const,
-  },
-  {
-    label: "Assignments to do",
-    value: "03",
-    description: "A little progress goes a long way",
-    tone: "amber" as const,
-  },
-  {
-    label: "Weekly study goal",
-    value: "8 / 12h",
-    description: "Example weekly goal",
-    tone: "green" as const,
-  },
-];
-
 export default function Home() {
+  const [completedAssignmentIds, setCompletedAssignmentIds] = useState<
+    string[]
+  >([]);
+  const incompleteAssignments =
+    initialAssignments.length - completedAssignmentIds.length;
+  const summary = [
+    {
+      label: "Courses in progress",
+      value: String(courses.length).padStart(2, "0"),
+      description: "Active this semester",
+      tone: "violet" as const,
+    },
+    {
+      label: "Assignments to do",
+      value: String(incompleteAssignments).padStart(2, "0"),
+      description: "A little progress goes a long way",
+      tone: "amber" as const,
+    },
+    {
+      label: "Weekly study goal",
+      value: "8 / 12h",
+      description: "Example weekly goal",
+      tone: "green" as const,
+    },
+  ];
+
+  function toggleAssignmentCompletion(assignmentId: string) {
+    setCompletedAssignmentIds((currentIds) =>
+      currentIds.includes(assignmentId)
+        ? currentIds.filter((id) => id !== assignmentId)
+        : [...currentIds, assignmentId],
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#f6f7fb] text-[#20213b] lg:flex">
       <aside className="border-b border-[#e9eaf1] bg-white lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:shrink-0 lg:border-b-0 lg:border-r">
@@ -140,7 +156,12 @@ export default function Home() {
             </div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {initialAssignments.map((assignment) => (
-                <AssignmentCard assignment={assignment} key={assignment.id} />
+                <AssignmentCard
+                  assignment={assignment}
+                  completed={completedAssignmentIds.includes(assignment.id)}
+                  key={assignment.id}
+                  onToggleCompleted={toggleAssignmentCompletion}
+                />
               ))}
             </div>
           </section>
