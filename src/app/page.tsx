@@ -74,7 +74,7 @@ export default function Home() {
                   <li className="shrink-0" key={item.label}>
                     <a
                       aria-current={item.active ? "page" : undefined}
-                      className={`flex items-center rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                      className={`flex min-h-11 items-center whitespace-nowrap rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                         item.active
                           ? "bg-[#f0f0fb] text-[#5152a5]"
                           : "text-[#77798e] hover:bg-[#f6f7fb] hover:text-[#20213b]"
