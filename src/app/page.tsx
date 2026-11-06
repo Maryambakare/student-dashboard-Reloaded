@@ -16,11 +16,20 @@ const navigation = [
 ];
 
 type AssignmentFilter = "all" | "pending" | "completed";
+type AssignmentSortOrder = "soonest" | "latest";
 
 const assignmentFilters: { label: string; value: AssignmentFilter }[] = [
   { label: "All", value: "all" },
   { label: "Pending", value: "pending" },
   { label: "Completed", value: "completed" },
+];
+
+const assignmentSortOrders: {
+  label: string;
+  value: AssignmentSortOrder;
+}[] = [
+  { label: "Due soonest", value: "soonest" },
+  { label: "Due latest", value: "latest" },
 ];
 
 export default function Home() {
@@ -29,6 +38,8 @@ export default function Home() {
   >([]);
   const [assignmentFilter, setAssignmentFilter] =
     useState<AssignmentFilter>("all");
+  const [assignmentSortOrder, setAssignmentSortOrder] =
+    useState<AssignmentSortOrder>("soonest");
   const filteredAssignments = initialAssignments.filter((assignment) => {
     const isCompleted = completedAssignmentIds.includes(assignment.id);
     return (
@@ -36,6 +47,13 @@ export default function Home() {
       (assignmentFilter === "completed" && isCompleted) ||
       (assignmentFilter === "pending" && !isCompleted)
     );
+  });
+  const sortedAssignments = [...filteredAssignments].sort((first, second) => {
+    const dueDateDifference =
+      Date.parse(first.dueDate) - Date.parse(second.dueDate);
+    return assignmentSortOrder === "soonest"
+      ? dueDateDifference
+      : -dueDateDifference;
   });
   const incompleteAssignments =
     initialAssignments.length - completedAssignmentIds.length;
@@ -176,31 +194,52 @@ export default function Home() {
                   Your assignments
                 </h2>
               </div>
-              <div
-                aria-label="Filter assignments by status"
-                className="flex flex-wrap gap-2"
-                role="group"
-              >
-                {assignmentFilters.map((filter) => (
-                  <button
-                    aria-pressed={assignmentFilter === filter.value}
-                    className={`min-h-11 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
-                      assignmentFilter === filter.value
-                        ? "bg-[#5152a5] text-white"
-                        : "border border-[#e9eaf1] bg-white text-[#77798e] hover:bg-[#f0f0fb] hover:text-[#5152a5]"
-                    }`}
-                    key={filter.value}
-                    onClick={() => setAssignmentFilter(filter.value)}
-                    type="button"
+              <div className="flex flex-wrap items-center gap-3">
+                <div
+                  aria-label="Filter assignments by status"
+                  className="flex flex-wrap gap-2"
+                  role="group"
+                >
+                  {assignmentFilters.map((filter) => (
+                    <button
+                      aria-pressed={assignmentFilter === filter.value}
+                      className={`min-h-11 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
+                        assignmentFilter === filter.value
+                          ? "bg-[#5152a5] text-white"
+                          : "border border-[#e9eaf1] bg-white text-[#77798e] hover:bg-[#f0f0fb] hover:text-[#5152a5]"
+                      }`}
+                      key={filter.value}
+                      onClick={() => setAssignmentFilter(filter.value)}
+                      type="button"
+                    >
+                      {filter.label}
+                    </button>
+                  ))}
+                </div>
+                <label className="flex min-h-11 items-center gap-2 text-sm font-medium text-[#77798e]">
+                  Sort
+                  <select
+                    className="min-h-11 rounded-xl border border-[#e9eaf1] bg-white px-3 text-sm font-semibold text-[#363751] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8384d3]"
+                    onChange={(event) => {
+                      const value = event.currentTarget.value;
+                      if (value === "soonest" || value === "latest") {
+                        setAssignmentSortOrder(value);
+                      }
+                    }}
+                    value={assignmentSortOrder}
                   >
-                    {filter.label}
-                  </button>
-                ))}
+                    {assignmentSortOrders.map((order) => (
+                      <option key={order.value} value={order.value}>
+                        {order.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
               </div>
             </div>
-            {filteredAssignments.length > 0 ? (
+            {sortedAssignments.length > 0 ? (
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {filteredAssignments.map((assignment) => (
+                {sortedAssignments.map((assignment) => (
                   <AssignmentCard
                     assignment={assignment}
                     completed={completedAssignmentIds.includes(assignment.id)}
