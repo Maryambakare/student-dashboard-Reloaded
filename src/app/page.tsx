@@ -22,23 +22,24 @@ export default function Home() {
     initialAssignments.length - completedAssignmentIds.length;
   const summary = [
     {
-      label: "Courses in progress",
+      label: "Enrolled Courses",
       value: String(courses.length).padStart(2, "0"),
-      description: "Active this semester",
+      description: "Courses this semester",
       tone: "violet" as const,
     },
     {
-      label: "Assignments to do",
-      value: String(incompleteAssignments).padStart(2, "0"),
-      description: "A little progress goes a long way",
-      tone: "amber" as const,
+      label: "Completed Assignments",
+      value: String(completedAssignmentIds.length).padStart(2, "0"),
+      description: "Nice work—keep it up",
+      tone: "green" as const,
       announceChanges: true,
     },
     {
-      label: "Weekly study goal",
-      value: "8 / 12h",
-      description: "Example weekly goal",
-      tone: "green" as const,
+      label: "Pending Assignments",
+      value: String(incompleteAssignments).padStart(2, "0"),
+      description: "Ready when you are",
+      tone: "amber" as const,
+      announceChanges: true,
     },
   ];
 
