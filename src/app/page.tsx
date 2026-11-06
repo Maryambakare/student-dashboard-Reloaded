@@ -7,6 +7,7 @@ import SummaryCard from "@/components/summary-card";
 import StudentProfile from "@/components/student-profile";
 import { initialAssignments } from "@/data/assignments";
 import { courses } from "@/data/courses";
+import { student } from "@/data/student";
 
 const navigation = [
   { label: "Overview", href: "#overview", active: true },
@@ -107,7 +108,7 @@ export default function Home() {
               YOUR STUDENT DASHBOARD
             </p>
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Welcome back
+              Welcome back, {student.name.split(" ")[0]}!
             </h1>
             <p className="mt-2 text-sm leading-6 text-[#77798e] sm:text-base">
               Your classes, assignments, and progress all in one place.
