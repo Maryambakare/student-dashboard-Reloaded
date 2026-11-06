@@ -62,20 +62,20 @@ export default function Home() {
       label: "Enrolled Courses",
       value: String(courses.length).padStart(2, "0"),
       description: "Courses this semester",
-      tone: "violet" as const,
+      tone: "sage" as const,
     },
     {
       label: "Completed Assignments",
       value: String(completedAssignmentIds.length).padStart(2, "0"),
       description: "Nice work—keep it up",
-      tone: "green" as const,
+      tone: "deep" as const,
       announceChanges: true,
     },
     {
       label: "Pending Assignments",
       value: String(incompleteAssignments).padStart(2, "0"),
       description: "Ready when you are",
-      tone: "amber" as const,
+      tone: "pale" as const,
       announceChanges: true,
     },
   ];
@@ -89,22 +89,22 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f6f7fb] text-[#20213b] lg:flex">
-      <aside className="border-b border-[#e9eaf1] bg-white lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:shrink-0 lg:border-b-0 lg:border-r">
+    <div className="min-h-screen bg-[#F8F4E9] text-[#354A39] lg:flex">
+      <aside className="border-b border-[#D8E1D2] bg-[#FFFDF7] lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:shrink-0 lg:border-b-0 lg:border-r">
         <div className="flex flex-col items-stretch gap-4 px-5 py-5 sm:px-8 lg:h-full lg:justify-start lg:gap-0 lg:px-6 lg:py-8">
           <a
             aria-label="Studyspace home"
             className="flex shrink-0 items-center gap-3"
             href="#overview"
           >
-            <span className="flex size-10 items-center justify-center rounded-xl bg-[#5152a5] text-lg font-bold text-white">
+            <span className="flex size-10 items-center justify-center rounded-xl bg-[#527A60] text-lg font-bold text-white">
               s
             </span>
             <span className="text-lg font-bold tracking-tight">studyspace</span>
           </a>
 
           <div className="lg:mt-12">
-            <p className="hidden px-3 text-xs font-semibold tracking-[0.16em] text-[#77798e] uppercase lg:mb-3 lg:block">
+            <p className="hidden px-3 text-xs font-semibold tracking-[0.16em] text-[#657568] uppercase lg:mb-3 lg:block">
               Workspace
             </p>
             <nav aria-label="Main navigation">
@@ -115,8 +115,8 @@ export default function Home() {
                       aria-current={item.active ? "page" : undefined}
                       className={`flex min-h-11 items-center whitespace-nowrap rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                         item.active
-                          ? "bg-[#f0f0fb] text-[#5152a5]"
-                          : "text-[#77798e] hover:bg-[#f6f7fb] hover:text-[#20213b]"
+                          ? "bg-[#E5EBDD] text-[#527A60]"
+                          : "text-[#657568] hover:bg-[#F8F4E9] hover:text-[#354A39]"
                       }`}
                       href={item.href}
                     >
@@ -128,7 +128,7 @@ export default function Home() {
             </nav>
           </div>
 
-          <p className="mt-auto hidden rounded-2xl bg-[#f6f7fb] p-4 text-sm leading-6 text-[#77798e] lg:block">
+          <p className="mt-auto hidden rounded-2xl bg-[#E5EBDD] p-4 text-sm leading-6 text-[#657568] lg:block">
             Small steps add up. Keep showing up for yourself.
           </p>
         </div>
@@ -140,13 +140,13 @@ export default function Home() {
       >
         <div className="mx-auto max-w-[1320px]">
           <header className="mb-9">
-            <p className="mb-2 text-sm font-semibold text-[#77798e]">
+            <p className="mb-2 text-sm font-semibold text-[#657568]">
               YOUR STUDENT DASHBOARD
             </p>
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Welcome back, {student.name.split(" ")[0]}!
             </h1>
-            <p className="mt-2 text-sm leading-6 text-[#77798e] sm:text-base">
+            <p className="mt-2 text-sm leading-6 text-[#657568] sm:text-base">
               Your classes, assignments, and progress all in one place.
             </p>
           </header>
@@ -164,7 +164,7 @@ export default function Home() {
 
           <section aria-labelledby="courses-heading" className="mb-10" id="courses">
             <div className="mb-5">
-              <p className="text-sm font-semibold text-[#5152a5]">
+              <p className="text-sm font-semibold text-[#527A60]">
                 KEEP LEARNING
               </p>
               <h2
@@ -184,7 +184,7 @@ export default function Home() {
           <section aria-labelledby="assignments-heading" id="assignments">
             <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-sm font-semibold text-[#5152a5]">
+                <p className="text-sm font-semibold text-[#527A60]">
                   YOUR SEMESTER
                 </p>
                 <h2
@@ -205,8 +205,8 @@ export default function Home() {
                       aria-pressed={assignmentFilter === filter.value}
                       className={`min-h-11 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
                         assignmentFilter === filter.value
-                          ? "bg-[#5152a5] text-white"
-                          : "border border-[#e9eaf1] bg-white text-[#77798e] hover:bg-[#f0f0fb] hover:text-[#5152a5]"
+                          ? "bg-[#527A60] text-white"
+                          : "border border-[#D8E1D2] bg-[#FFFDF7] text-[#657568] hover:bg-[#E5EBDD] hover:text-[#354A39]"
                       }`}
                       key={filter.value}
                       onClick={() => setAssignmentFilter(filter.value)}
@@ -216,10 +216,10 @@ export default function Home() {
                     </button>
                   ))}
                 </div>
-                <label className="flex min-h-11 items-center gap-2 text-sm font-medium text-[#77798e]">
+                <label className="flex min-h-11 items-center gap-2 text-sm font-medium text-[#657568]">
                   Sort
                   <select
-                    className="min-h-11 rounded-xl border border-[#e9eaf1] bg-white px-3 text-sm font-semibold text-[#363751] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8384d3]"
+                    className="min-h-11 rounded-xl border border-[#D8E1D2] bg-[#FFFDF7] px-3 text-sm font-semibold text-[#354A39] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#527A60]"
                     onChange={(event) => {
                       const value = event.currentTarget.value;
                       if (value === "soonest" || value === "latest") {
@@ -250,7 +250,7 @@ export default function Home() {
               </div>
             ) : (
               <p
-                className="rounded-2xl border border-dashed border-[#d9dbea] bg-white px-5 py-8 text-center text-sm text-[#77798e]"
+                className="rounded-2xl border border-dashed border-[#D8E1D2] bg-[#FFFDF7] px-5 py-8 text-center text-sm text-[#657568]"
                 role="status"
               >
                 No {assignmentFilter} assignments right now.

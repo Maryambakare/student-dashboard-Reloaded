@@ -5,26 +5,26 @@ interface CourseCardProps {
 }
 
 const toneStyles = {
-  violet: "bg-[#6868bd]",
-  green: "bg-[#62a780]",
-  amber: "bg-[#e1aa54]",
+  sage: "bg-[#A3BFA8]",
+  deep: "bg-[#527A60]",
+  pale: "bg-[#D5DFC9]",
 };
 
 const progressStyles = {
-  violet: "bg-[#6868bd]",
-  green: "bg-[#62a780]",
-  amber: "bg-[#e1aa54]",
+  sage: "bg-[#A3BFA8]",
+  deep: "bg-[#527A60]",
+  pale: "bg-[#D5DFC9]",
 };
 
 export default function CourseCard({ course }: CourseCardProps) {
   return (
-    <article className="rounded-2xl border border-[#e9eaf1] bg-white p-5 shadow-[0_8px_32px_-24px_rgba(33,34,65,0.2)] sm:p-6">
+    <article className="rounded-2xl border border-[#D8E1D2] bg-[#FFFDF7] p-5 shadow-[0_8px_32px_-24px_rgba(53,74,57,0.2)] sm:p-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold tracking-[0.12em] text-[#77798e] uppercase">
+          <p className="text-xs font-semibold tracking-[0.12em] text-[#657568] uppercase">
             {course.code}
           </p>
-          <h3 className="mt-2 text-base font-bold tracking-tight text-[#20213b]">
+          <h3 className="mt-2 text-base font-bold tracking-tight text-[#354A39]">
             {course.name}
           </h3>
         </div>
@@ -34,14 +34,14 @@ export default function CourseCard({ course }: CourseCardProps) {
         />
       </div>
 
-      <p className="mt-4 text-sm text-[#77798e]">
+      <p className="mt-4 text-sm text-[#657568]">
         Instructor: {course.instructor}
       </p>
 
       <div className="mt-5">
         <div className="mb-2 flex items-center justify-between gap-3 text-xs">
-          <span className="font-medium text-[#77798e]">Course progress</span>
-          <span className="font-semibold text-[#363751]">
+          <span className="font-medium text-[#657568]">Course progress</span>
+          <span className="font-semibold text-[#354A39]">
             {course.progress}%
           </span>
         </div>
@@ -50,7 +50,7 @@ export default function CourseCard({ course }: CourseCardProps) {
           aria-valuemax={100}
           aria-valuemin={0}
           aria-valuenow={course.progress}
-          className="h-2 overflow-hidden rounded-full bg-[#f0f0f5]"
+          className="h-2 overflow-hidden rounded-full bg-[#E5EBDD]"
           role="progressbar"
         >
           <div

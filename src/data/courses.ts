@@ -4,7 +4,7 @@ export interface Course {
   code: string;
   instructor: string;
   progress: number;
-  tone: "violet" | "green" | "amber";
+  tone: "sage" | "deep" | "pale";
 }
 
 export const courses: Course[] = [
@@ -14,7 +14,7 @@ export const courses: Course[] = [
     code: "DES 210",
     instructor: "Jamie Rivera",
     progress: 72,
-    tone: "violet",
+    tone: "sage",
   },
   {
     id: "data-structures",
@@ -22,7 +22,7 @@ export const courses: Course[] = [
     code: "CS 240",
     instructor: "Morgan Chen",
     progress: 48,
-    tone: "green",
+    tone: "deep",
   },
   {
     id: "web-development",
@@ -30,6 +30,6 @@ export const courses: Course[] = [
     code: "CS 315",
     instructor: "Taylor Brooks",
     progress: 36,
-    tone: "amber",
+    tone: "pale",
   },
 ];

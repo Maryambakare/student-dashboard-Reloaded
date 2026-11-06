@@ -2,7 +2,7 @@
 
 :root {
   color-scheme: light;
-  background: #f6f7fb;
+  background: #F8F4E9;
   font-family: Arial, Helvetica, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,13 +26,13 @@ body {
 a:focus-visible,
 button:focus-visible {
   border-radius: 0.5rem;
-  outline: 3px solid #8384d3;
+  outline: 3px solid #527A60;
   outline-offset: 3px;
 }
 
 ::selection {
-  background: #e4e3fb;
-  color: #33346f;
+  background: #E5EBDD;
+  color: #354A39;
 }
 
 @media (prefers-reduced-motion: reduce) {
