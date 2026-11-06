@@ -47,8 +47,8 @@ export default function AssignmentCard({
           </p>
         </div>
       </div>
-      <p className="mt-5 border-t border-[#e9eaf1] pt-4 text-xs font-semibold text-[#ad7625]">
-        {assignment.dueLabel} ·{" "}
+      <p className="mt-5 border-t border-[#e9eaf1] pt-4 text-xs font-semibold text-[#77798e]">
+        Due date ·{" "}
         <time dateTime={assignment.dueDate}>
           {new Date(`${assignment.dueDate}T12:00:00`).toLocaleDateString(
             "en-US",
