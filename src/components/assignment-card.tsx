@@ -25,9 +25,20 @@ export default function AssignmentCard({
           }`}
         />
         <div className="min-w-0">
-          <p className="text-xs font-semibold tracking-[0.08em] text-[#77798e] uppercase">
-            {assignment.course}
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-xs font-semibold tracking-[0.08em] text-[#77798e] uppercase">
+              {assignment.course}
+            </p>
+            <span
+              className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
+                completed
+                  ? "bg-[#e9f5ee] text-[#387555]"
+                  : "bg-[#fff4e3] text-[#ad7625]"
+              }`}
+            >
+              {completed ? "Completed" : "Pending"}
+            </span>
+          </div>
           <h3 className="mt-2 text-base font-bold leading-6 tracking-tight text-[#20213b]">
             {assignment.title}
           </h3>
