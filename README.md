@@ -1,57 +1,73 @@
-# Studyspace Student Dashboard
+# Student Dashboard
 
-A responsive, one-page student dashboard built with the Next.js App Router,
-React, TypeScript, and Tailwind CSS. All student and course information is
-sample data; there is no backend or authentication.
+A responsive student dashboard built with **Next.js, React, TypeScript, and Tailwind CSS**.
 
-## Run locally
+The project provides a simple interface for students to monitor their academic activities, track course progress, and manage assignments.
+
+## Features
+
+- **Dashboard Overview:** Summary cards displaying important student information and assignment metrics.
+- **Course Progress:** View courses and monitor learning progress.
+- **Assignment Management:** View assignments, deadlines, and completion status.
+- **Assignment Filters:** Filter assignments by All, Pending, and Completed.
+- **Empty States:** Helpful messages when no assignments match the selected filter.
+- **Responsive Design:** Works across different screen sizes.
+- **Interactive UI:** Hover effects and interactive elements for a better user experience.
+
+## Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Maryambakare/student-dashboard-Reloaded.git
+```
+
+### 2. Navigate into the project folder
+
+```bash
+cd student-dashboard-Reloaded
+```
+
+### 3. Install dependencies
 
 ```bash
 npm install
+```
+
+### 4. Start the development server
+
+```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). To check the project,
-run:
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-```bash
-npm run lint
-npx tsc --noEmit
-npm run build
+## Project Structure
+
+```text
+student-dashboard/
+├── app/
+│   ├── page.tsx
+│   ├── layout.tsx
+│   └── globals.css
+├── public/
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-## Understand the project
+## Purpose
 
-- [`src/app/page.tsx`](./src/app/page.tsx) assembles the dashboard and uses
-  React `useState` to track which assignments are complete.
-- [`src/components/summary-card.tsx`](./src/components/summary-card.tsx)
-  defines the reusable, typed `SummaryCard` component.
-- [`src/data/assignments.ts`](./src/data/assignments.ts) defines the
-  `Assignment` interface and the three sample assignments.
-- [`src/data/courses.ts`](./src/data/courses.ts) defines the three course
-  records.
-- [`src/components/student-profile.tsx`](./src/components/student-profile.tsx),
-  [`src/components/course-card.tsx`](./src/components/course-card.tsx), and
-  [`src/components/assignment-card.tsx`](./src/components/assignment-card.tsx)
-  render the profile and reusable content cards.
-- [`src/app/globals.css`](./src/app/globals.css) contains the global styling
-  and reduced-motion preference.
+This project was built to practise frontend development, improve my understanding of React and Next.js, and apply TypeScript to a practical web development project.
 
-An `Assignment` has an `id` (a unique React key), `title`, `course`, ISO-format
-`dueDate`, display-ready `dueLabel`, and short `description`. The assignment
-list in `src/data/assignments.ts` is the source for all three cards. Completion
-IDs are kept in page state and are not written back to that sample data.
+## Author
 
-## Try the completion buttons
+**Bakare Maryam**
 
-Select **Mark as Completed** on an assignment. Its button changes to
-**Mark as Incomplete**, and the **Assignments to do** count decreases. Select
-the button again to undo completion. The state is in memory only, so refreshing
-the page resets the sample assignments.
-
-## Class rule
-
-Before accepting generated changes, open the files, identify the components,
-and understand the `Assignment` data shape. Test the completion button yourself.
-If an error appears, ask the agent to explain it before applying a suggested fix.
-Never paste passwords or API keys into a prompt.
