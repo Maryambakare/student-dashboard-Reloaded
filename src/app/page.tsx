@@ -15,10 +15,28 @@ const navigation = [
   { label: "Assignments", href: "#assignments", active: false },
 ];
 
+type AssignmentFilter = "all" | "pending" | "completed";
+
+const assignmentFilters: { label: string; value: AssignmentFilter }[] = [
+  { label: "All", value: "all" },
+  { label: "Pending", value: "pending" },
+  { label: "Completed", value: "completed" },
+];
+
 export default function Home() {
   const [completedAssignmentIds, setCompletedAssignmentIds] = useState<
     string[]
   >([]);
+  const [assignmentFilter, setAssignmentFilter] =
+    useState<AssignmentFilter>("all");
+  const filteredAssignments = initialAssignments.filter((assignment) => {
+    const isCompleted = completedAssignmentIds.includes(assignment.id);
+    return (
+      assignmentFilter === "all" ||
+      (assignmentFilter === "completed" && isCompleted) ||
+      (assignmentFilter === "pending" && !isCompleted)
+    );
+  });
   const incompleteAssignments =
     initialAssignments.length - completedAssignmentIds.length;
   const summary = [
@@ -146,27 +164,59 @@ export default function Home() {
           </section>
 
           <section aria-labelledby="assignments-heading" id="assignments">
-            <div className="mb-5">
-              <p className="text-sm font-semibold text-[#5152a5]">
-                YOUR SEMESTER
-              </p>
-              <h2
-                className="mt-1 text-xl font-bold tracking-tight"
-                id="assignments-heading"
+            <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold text-[#5152a5]">
+                  YOUR SEMESTER
+                </p>
+                <h2
+                  className="mt-1 text-xl font-bold tracking-tight"
+                  id="assignments-heading"
+                >
+                  Your assignments
+                </h2>
+              </div>
+              <div
+                aria-label="Filter assignments by status"
+                className="flex flex-wrap gap-2"
+                role="group"
               >
-                Your assignments
-              </h2>
+                {assignmentFilters.map((filter) => (
+                  <button
+                    aria-pressed={assignmentFilter === filter.value}
+                    className={`min-h-11 rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${
+                      assignmentFilter === filter.value
+                        ? "bg-[#5152a5] text-white"
+                        : "border border-[#e9eaf1] bg-white text-[#77798e] hover:bg-[#f0f0fb] hover:text-[#5152a5]"
+                    }`}
+                    key={filter.value}
+                    onClick={() => setAssignmentFilter(filter.value)}
+                    type="button"
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {initialAssignments.map((assignment) => (
-                <AssignmentCard
-                  assignment={assignment}
-                  completed={completedAssignmentIds.includes(assignment.id)}
-                  key={assignment.id}
-                  onToggleCompleted={toggleAssignmentCompletion}
-                />
-              ))}
-            </div>
+            {filteredAssignments.length > 0 ? (
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                {filteredAssignments.map((assignment) => (
+                  <AssignmentCard
+                    assignment={assignment}
+                    completed={completedAssignmentIds.includes(assignment.id)}
+                    key={assignment.id}
+                    onToggleCompleted={toggleAssignmentCompletion}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p
+                className="rounded-2xl border border-dashed border-[#d9dbea] bg-white px-5 py-8 text-center text-sm text-[#77798e]"
+                role="status"
+              >
+                No {assignmentFilter} assignments right now.
+              </p>
+            )}
           </section>
         </div>
       </main>
